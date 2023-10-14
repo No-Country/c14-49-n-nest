@@ -1,14 +1,19 @@
 import { useForm } from "react-hook-form";
 import styles from "./login.module.css";
+import {useNavigate} from "react-router-dom"
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
+  const navigate = useNavigate();
+  const toRegister=()=>{
+    navigate("/register")
+  }
   return (
     <div className={styles.loginContainer}>
       <div className={styles.header}>
           <p className={styles.marca}>Sabores y cafe</p>
           <div className={styles.divRegisterButton}>
-          <button className={styles.registerButton}>Unete Ahora</button>
+              <button onClick={toRegister} className={styles.registerButton}>Unete Ahora</button>
           </div>
       </div>
       <div className={styles.home}>
@@ -29,7 +34,7 @@ const Login = () => {
                 <input type="checkbox" id="miCheckbox" />
                 <label className={styles.labelCheckbox} htmlFor="miCheckbox">Recordar mis credenciales</label>
                 </div>
-                <p className={styles.labelCheckbox}>Olvidaste tu constraseña?</p>
+                <button className={styles.labelCheckbox}>Olvidaste tu constraseña?</button>
             </div>
             <div className={styles.divButton}>
                 <button className={styles.loginButton} type="submit">Login</button>
