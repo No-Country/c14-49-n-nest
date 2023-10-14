@@ -5,12 +5,6 @@ export default withMT({
   content: ["./index.html", "./src//*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      spacing: {
-        "36rem": "36rem",
-      },
-      heigth: {
-        700: "700px",
-      },
       screens: {
         sm: "480px",
         md: "768px",
@@ -50,6 +44,7 @@ export default withMT({
         "Segoe UI Emoji",
         "Segoe UI Symbol",
         "Noto Color Emoji",
+        "Jacques Francois Shadow"
       ],
       sans: [
         "Inter",
