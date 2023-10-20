@@ -5,7 +5,11 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { useState } from "react";
+import {IoIosAddCircleOutline} from "react-icons/io"
+import { useState,useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setCart, setAllProducts } from "../Redux/sliceCart";
+
 const Carta = () => {
   const products = [
     {
@@ -91,13 +95,12 @@ const Carta = () => {
       descripcion: "Café con leche espumosa y un toque de canela.",
     },
   ];
+  const dispatch = useDispatch()
   const [currentPage, setCurrentPage] = useState(1);
   const totalProducts = products.length
   const productsPerPage = 8;
-  //Math.ceil redondea para arriba y Math.min busca el elemento de menor valor
   const totalPages = Math.ceil(totalProducts / productsPerPage);
   const validCurrentPage = Math.min(currentPage, totalPages);
-
   const startIndex = (validCurrentPage - 1) * productsPerPage;
   const endIndex = validCurrentPage * productsPerPage;
   const pageButtons = [];
@@ -106,11 +109,20 @@ const Carta = () => {
       <button
         key={i}
         onClick={() => setCurrentPage(i)}
-        className="px-2 mx-1 rounded-full bg-black text-white"
+        className={`px-2 mx-1 rounded-full bg-black text-white ${
+          i === validCurrentPage ? "bg-gray-600" : ""
+        }`}
       >
         {i}
       </button>
     );
+  }
+  useEffect(() => {
+    dispatch(setAllProducts(products));
+  }, []);
+  const addCart=(event)=>{
+    const add = event.target.value;
+    dispatch(setCart(add))
   }
   return (
     <div className="bg-orange-100 my-3 w-4/5 rounded-3xl">
@@ -137,8 +149,9 @@ const Carta = () => {
                     <Typography className="mb-2 font-inter text-sm">{product.descripcion}</Typography>
                   </div>
                   <div className="pt-0 flex flex-row justify-between">
-                    <Button className="text-black p-2 bg-slate-400 hover:bg-slate-300">
-                      Añadir al carrito
+                    <Button value={product.id} onClick={addCart} className="text-black p-2 bg-slate-400 hover:bg-slate-300 flex justify-center items-center">
+                      <IoIosAddCircleOutline />
+                      Añadir al carrito 
                     </Button>
                     <Typography>{product.price}</Typography>
                   </div>
