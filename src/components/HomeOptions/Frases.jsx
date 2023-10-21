@@ -4,7 +4,7 @@ const Frases = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => console.log(data);
   return (
-    <div className="w-4/5  flex flex-col items-center justify-center dark">
+    <div className="w-4/5  flex flex-col items-center justify-center my-2">
       <div className="w-full h-full bg-gray-200 rounded-lg shadow-md p-6 flex flex-col items-center">
         <h2 className="text-4xl font-bold text-gray-800 mb-4">Comparte tus Frases</h2>
         <h3 className="text-4xl font-bold text-gray-800 mb-4">Inspira a muchos !</h3>

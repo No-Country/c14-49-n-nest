@@ -1,6 +1,6 @@
 const Cultura = () => {
   return (
-    <div className="w-3/4 flex items-center justify-center flex-col bg-slate-200">
+    <div className="w-3/4 flex items-center justify-center flex-col bg-slate-200 my-2">
       <h1 className="p-5 text-5xl m-2 font-jacques-francois-shadow">Cultura y Mision de Sabores y Cafe</h1>
       <p className="col-2 p-5 m-3 text-xl font-inter">
         En nuestra cafetería, nos esforzamos por crear una experiencia única

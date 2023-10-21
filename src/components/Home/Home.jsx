@@ -26,13 +26,13 @@ const Home = () => {
   return (
     <div className="w-full bg-orange-100 h-full min-h-screen flex flex-col">
       <div className="h-16 flex flex-row justify-between">
-        <p className="self-center text-5xl font-jacques-francois-shadow mb-3 mt-2 ml-5">Sabores y cafe</p>
+        <p className="self-center font-jacques-francois-shadow mb-3 mt-2 ml-5 sm:text-4xl md:text-5xl ">Sabores y cafe</p>
         <div className="w-auto flex flex-row self-center mr-5 items-center justify-center">
           <button  className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover:bg-orange-300" onClick={goToLogin}>Iniciar Sesion</button>
           <button  className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover:bg-orange-300" onClick={toRegister}>Unete Ahora</button>
         </div>
       </div>
-      <NavBar />
+      <NavBar setImagenSeleccionada={setImagenSeleccionada}/>
       <div className="w-full h-96 relative">
         <img className="w-full h-full object-cover" src="\src\assets\imgHome.jpg" alt="" />
         <div className="absolute bottom-0 left-0 w-full">

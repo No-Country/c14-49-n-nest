@@ -93,7 +93,7 @@ import {
     ];
     const [currentPage, setCurrentPage] = useState(1);
     const totalProducts = products.length
-    const productsPerPage = 8;
+    const productsPerPage = 6;
     //Math.ceil redondea para arriba y Math.min busca el elemento de menor valor
     const totalPages = Math.ceil(totalProducts / productsPerPage);
     const validCurrentPage = Math.min(currentPage, totalPages);
@@ -117,10 +117,10 @@ import {
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
             Merchandising
           </h2>
-          <div className=" grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          <div className="flex flex-wrap gap-3 justify-center items-center">
             {products.slice(startIndex, endIndex).map((product) => (
               <div key={product.id} className="group relative">
-                <Card className="mt-6 min-h-[530px] flex flex-col bg-gray-200">
+                <Card className="mt-6 w-[240px] flex flex-col bg-gray-200">
                   <CardHeader className="h-2/3">
                     <div className="aspect-h-1 aspect-w-1 w-full h-full overflow-hidden rounded-md bg-gray-300 lg:aspect-none group-hover:opacity-75 lg:h-80">
                       <img
