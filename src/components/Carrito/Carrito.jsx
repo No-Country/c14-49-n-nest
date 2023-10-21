@@ -14,13 +14,17 @@ const Carrito = () => {
 
   const [total, setTotal] = useState(0);
   const [cartChangeFlag, setCartChangeFlag] = useState(false);
+  const [cantidad, setCantidad] = useState(0)
 
   useEffect(() => {
     let newTotal = 0;
+    let newCantidad = 0
     for (let i = 0; i < cart.length; i++) {
       newTotal += parseFloat(cart[i].price.replace("$", "")) * cart[i].quantity;
+      newCantidad += cart[i].quantity
     }
     setTotal(newTotal);
+    setCantidad(newCantidad)
   }, [cartChangeFlag])
   const addCart = (id) => {
     dispatch(setCart(id)); 
@@ -30,7 +34,7 @@ const Carrito = () => {
     dispatch(setRemoveCart(id));
     setCartChangeFlag(!cartChangeFlag)
   };
-
+console.log(cart)
   return (
     <div className="w-full h-full min-h-screen bg-orange-200 flex flex-col justify-center items-center">
      <div className="w-full h-[10vh] flex flex-row justify-between bg-orange-300">
@@ -45,13 +49,13 @@ const Carrito = () => {
       
       <div className="w-2/3 h-full flex flex-wrap justify-center items-center">
         {cart.map((product) => (
-          <div className="m-2 flex w-96 justify-center items-center bg-gray-300 h-72" key={product.id}>
+          <div className="m-2 flex w-96 justify-center items-center bg-amber-600 h-72" key={product.id}>
             <div className="w-1/2 flex flex-col items-center p-3">
-              <p>{product.name}</p>
+              <p className="text-xl font-bold">{product.name}</p>
               <p>{product.price}</p>
               <div className="flex p-3">
-                <button onClick={() => addCart(product.id)} className="p-1">+</button>
-                <button onClick={() => removeCart(product.id)} className="p-1">-</button>
+                <button onClick={() => addCart(product.id)} className="py-1 px-2 m-1 bg-orange-200 rounded-full hover:bg-orange-100">+</button>
+                <button onClick={() => removeCart(product.id)} className="py-1 px-2 m-1 bg-orange-200 rounded-full hover:bg-orange-100">-</button>
               </div>
               <p>Cantidad: {product.quantity}</p>
             </div>
@@ -62,9 +66,20 @@ const Carrito = () => {
         ))}
       </div>
       <div className="w-1/3 flex flex-col justify-center items-center bg-orange-100">
-        <div className="w-1/2 bg-orange-200 flex flex-col items-center justify-center rounded-xl">
-        <p className="mt-2">Total: ${total.toFixed(2)}</p>
-        <button className="bg-orange-300 p-2 mb-2 rounded-lg hover:bg-orange-100">Confirmar compra</button>
+        <div className="w-1/2 bg-orange-200 flex flex-col items-start py-5 justify-center rounded-xl">
+          <div className="flex justify-between w-full">
+          <p className="px-2">Productos ({cantidad})</p>
+          <p className="mr-3">${total.toFixed(2)}</p>
+          </div>
+          <div className="flex justify-between w-full">
+          <p className="px-2">Envio:</p>
+          <p className="mr-3 n ">Gratis</p>
+          </div>
+          <div className="flex justify-between w-full">
+          <p className="px-2">Total:</p>
+          <p className="mr-3"> ${total.toFixed(2)}</p>
+          </div>
+          <button className="bg-orange-300 p-1 m-2 rounded-lg w-[90%] self-center hover:bg-orange-100">Confirmar compra</button>
         </div>
       </div>
       </div>

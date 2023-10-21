@@ -13,7 +13,7 @@ const NavBar=({setImagenSeleccionada})=>{
     return(
         <div className="flex w-full p-3 justify-around bg-orange-300">
             <button value="imgCarta" onClick={renderContent} className="text-lg font-bold tracking-tight text-gray-900">Carta</button>
-            <button value="imgFrases" onClick={renderContent} className="text-lg font-bold tracking-tight text-gray-900">Comparte una frase</button>
+            <button value="imgFrases" onClick={renderContent} className="text-lg font-bold tracking-tight text-gray-900">Frases de la comunidad</button>
             <button value="imgMerch" onClick={renderContent} className="text-lg font-bold tracking-tight text-gray-900">Merchandising</button>
             <button onClick={goToCart} className="text-lg font-bold tracking-tight text-gray-900 flex flex-row items-center justify-center"><IoCartSharp/>Carrito</button>
         </div>

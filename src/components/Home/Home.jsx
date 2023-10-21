@@ -6,6 +6,7 @@ import Frases from "../HomeOptions/Frases";
 import Carta from "../HomeOptions/Carta";
 import Cultura from "../HomeOptions/Cultura";
 import Merch from "../HomeOptions/Merch";
+import CreateFrases from "../HomeOptions/CreateFrases";
 
 const Home = () => {
   const [imagenSeleccionada, setImagenSeleccionada] = useState('imgCarta');
@@ -18,7 +19,7 @@ const Home = () => {
   };
   const imagenes = [
     { id: 'imgCarta', src: '/src/assets/imgCarta.jpg', alt: 'Carta' },
-    { id: 'imgFrases', src: '/src/assets/imgFrases.jpg', alt: 'Frases' },
+    { id: 'createFrases', src: '/src/assets/imgFrases.jpg', alt: 'Frases' },
     { id: 'imgCultura', src: '/src/assets/imgCultura.jpg', alt: 'Cultura' },
     { id: 'imgMerch', src: '/src/assets/imgMerch.jpg', alt: 'Merch' },
   ];
@@ -56,6 +57,7 @@ const Home = () => {
         {imagenSeleccionada === 'imgFrases' && <Frases />}
         {imagenSeleccionada === 'imgCultura' && <Cultura />}  
         {imagenSeleccionada === 'imgMerch' && <Merch />}
+        {imagenSeleccionada === 'createFrases' && <CreateFrases />}
         </div>
       </div>
     </div>
