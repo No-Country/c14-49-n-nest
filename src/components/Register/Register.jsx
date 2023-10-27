@@ -1,13 +1,33 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import axios from "axios";
 
 const Register = () => {
   const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
   const goToLogin = () => {
     navigate("/login");
   };
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const termsAccepted = data.termsAccepted;
+    
+    if (!termsAccepted) {
+      alert("Debes aceptar los términos y condiciones para registrarte.");
+      return;
+    }
+
+    await axios
+      .post("http://localhost:3001/login", data)
+      .then(({ data }) => {
+        if (data) {
+          alert("Usuario creado con éxito");
+        }
+      })
+      .catch((error) => {
+        alert("Algo falló", error);
+      });
+  };
   return (
     <div className="w-full bg-orange-100 h-screen flex flex-col">
       <div className="h-16 flex flex-row justify-between">
@@ -38,18 +58,18 @@ const Register = () => {
             type="date"
             className="m-3 rounded-md p-2"
             placeholder="Date of Birth"
-          {...register("date")} />
+          {...register("birthDate")} />
       </div>
       <div className="flex flex-col">
         <input className="m-3 rounded-md p-2" placeholder="Email address" {...register("email", { required: true })} />
         <input className="m-3 rounded-md p-2" placeholder="Password" {...register("password")} />
-        <input className="m-3 rounded-md p-2" placeholder="Confirm password" {...register("ConfirmPassword")} />
+        <input className="m-3 rounded-md p-2" placeholder="Confirm password" {...register("confirmPassword")} />
       </div>
     </div>
     <div className="text-center mt-5">
-      <input type="checkbox" id="miCheckbox" />
-      <label className="font-inter text-black hover:text-white" htmlFor="miCheckbox">Terminos y condiciones</label>
-    </div>
+          <input type="checkbox" id="termsAccepted" {...register("termsAccepted")} />
+          <label className="font-inter text-black hover:text-white" htmlFor="termsAccepted">Acepto los términos y condiciones</label>
+        </div>
     <div className="text-center mt-4">
     <button className="w-32 bg-black rounded-lg text-white p-3 mx-auto font-inter mb-7" type="submit">Crear cuenta</button>
   </div>

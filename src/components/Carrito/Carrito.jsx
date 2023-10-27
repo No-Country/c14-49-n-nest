@@ -3,7 +3,7 @@ import { getCart, setCart, setRemoveCart } from "../Redux/sliceCart";
 import { useEffect, useState } from "react"; 
 import { useNavigate } from "react-router-dom";
 
-const Carrito = () => {
+const Carrito = ({ access, setAccess }) => {
   const cart = useSelector(getCart);
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -34,6 +34,10 @@ const Carrito = () => {
     dispatch(setRemoveCart(id));
     setCartChangeFlag(!cartChangeFlag)
   };
+  const logout=()=>{
+    setAccess(false)
+    navigate('/login')
+  }
 console.log(cart)
   return (
     <div className="w-full h-full min-h-screen bg-orange-200 flex flex-col justify-center items-center">
@@ -41,8 +45,29 @@ console.log(cart)
         <button value=" " onClick={router} className="self-center bg-orange-200 p-2 rounded-lg  mb-3 mt-2 ml-5 text-xl hover:bg-orange-100 ">Volver al Inicio</button>
         <p className="text-4xl font-jacques-francois-shadow self-center">Carrito</p>
         <div className="w-auto flex flex-row self-center mr-5 items-center justify-center">
-          <button value="login" className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover:bg-orange-100" onClick={router}>Iniciar Sesion</button>
-          <button value="register" className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover:bg-orange-100" onClick={router}>Unete Ahora</button> 
+        {access ? (
+            <button
+              className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover-bg-orange-300"
+              onClick={logout}
+            >
+              Cerrar Sesión
+            </button>
+          ) : (
+            <>
+              <button
+                className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover-bg-orange-300"
+                onClick={router}
+              >
+                Iniciar Sesión
+              </button>
+              <button
+                className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover-bg-orange-300"
+                onClick={router}
+              >
+                Únete Ahora
+              </button>
+            </>
+          )}
         </div>
       </div>
       <div className="flex w-full min-h-[90vh] h-full">
@@ -54,8 +79,8 @@ console.log(cart)
               <p className="text-xl font-bold">{product.name}</p>
               <p>{product.price}</p>
               <div className="flex p-3">
-                <button onClick={() => addCart(product.id)} className="py-1 px-2 m-1 bg-orange-200 rounded-full hover:bg-orange-100">+</button>
-                <button onClick={() => removeCart(product.id)} className="py-1 px-2 m-1 bg-orange-200 rounded-full hover:bg-orange-100">-</button>
+                <button onClick={() => addCart(product.id)} className="py-1 px-2 m-1 bg-orange-200 rounded-full hover:bg-orange-100">Agregar</button>
+                <button onClick={() => removeCart(product.id)} className="py-1 px-2 m-1 bg-orange-200 rounded-full hover:bg-orange-100">Eliminar</button>
               </div>
               <p>Cantidad: {product.quantity}</p>
             </div>
