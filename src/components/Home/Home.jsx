@@ -30,7 +30,7 @@ const Home = ({ access, setAccess }) => {
   return (
     <div className="w-full bg-orange-100 h-full min-h-screen flex flex-col">
       <div className="h-16 flex flex-row justify-between">
-        <p className="self-center font-jacques-francois-shadow mb-3 mt-2 ml-5 sm:text-4xl md:text-5xl ">Sabores y cafe</p>
+      <p className="self-center font-jacques-francois mb-3 mt-2 ml-5 sm:text-4xl md:text-5xl">Sabores y cafe</p>
         <div className="w-auto flex flex-row self-center mr-5 items-center justify-center">
         {access ? (
             <button
@@ -78,7 +78,7 @@ const Home = ({ access, setAccess }) => {
     </div>
         <div className="flex w-3/4 justify-center items-center bg-orange-300">
         {imagenSeleccionada === 'imgCarta' && <Carta />}
-        {imagenSeleccionada === 'imgFrases' && <Frases />}
+        {imagenSeleccionada === 'imgFrases' && <Frases setImagenSeleccionada={setImagenSeleccionada}/>}
         {imagenSeleccionada === 'imgCultura' && <Cultura />}  
         {imagenSeleccionada === 'imgMerch' && <Merch />}
         {imagenSeleccionada === 'createFrases' && <CreateFrases />}

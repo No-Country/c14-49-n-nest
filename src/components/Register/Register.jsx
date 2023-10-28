@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import axios from "axios";
 
 const Register = () => {
@@ -22,6 +21,7 @@ const Register = () => {
       .then(({ data }) => {
         if (data) {
           alert("Usuario creado con éxito");
+          navigate('/login')
         }
       })
       .catch((error) => {

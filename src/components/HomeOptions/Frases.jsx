@@ -1,7 +1,8 @@
 
 const Frases = ({setImagenSeleccionada}) => {
   const goToCreate=(event)=>{
-    value = event.target.value
+    const value = event.target.value
+    console.log(value)
     setImagenSeleccionada(value)
   }
   return (

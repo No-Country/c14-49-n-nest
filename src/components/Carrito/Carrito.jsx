@@ -11,7 +11,6 @@ const Carrito = ({ access, setAccess }) => {
     const value = event.target.value
     navigate(`/${value}`);
   };
-
   const [total, setTotal] = useState(0);
   const [cartChangeFlag, setCartChangeFlag] = useState(false);
   const [cantidad, setCantidad] = useState(0)
