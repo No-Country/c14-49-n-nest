@@ -4,12 +4,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'jacques-francois-shadow': ['"Jacques Francois Shadow"', 'cursive'],
-        'inter': ['Inter', 'sans'],
+        // 'jacques-francois-shadow': ['Jacques Francois Shadow', 'cursive'],
+        // 'inter': ['Inter', 'sans'],
       },
     },
   },
-  plugins: [
-
-  ],
 }

@@ -8,7 +8,7 @@ import Cultura from "../HomeOptions/Cultura";
 import Merch from "../HomeOptions/Merch";
 import CreateFrases from "../HomeOptions/CreateFrases";
 
-const Home = () => {
+const Home = ({ access, setAccess }) => {
   const [imagenSeleccionada, setImagenSeleccionada] = useState('imgCarta');
   const navigate = useNavigate();
   const toRegister = () => {
@@ -17,20 +17,44 @@ const Home = () => {
   const goToLogin = () => {
     navigate("/login");
   };
+  const logout=()=>{
+    setAccess(false)
+    navigate('/login')
+  }
   const imagenes = [
     { id: 'imgCarta', src: '/src/assets/imgCarta.jpg', alt: 'Carta' },
     { id: 'createFrases', src: '/src/assets/imgFrases.jpg', alt: 'Frases' },
     { id: 'imgCultura', src: '/src/assets/imgCultura.jpg', alt: 'Cultura' },
     { id: 'imgMerch', src: '/src/assets/imgMerch.jpg', alt: 'Merch' },
   ];
-  
   return (
     <div className="w-full bg-orange-100 h-full min-h-screen flex flex-col">
       <div className="h-16 flex flex-row justify-between">
-        <p className="self-center font-jacques-francois-shadow mb-3 mt-2 ml-5 sm:text-4xl md:text-5xl ">Sabores y cafe</p>
+      <p className="self-center font-jacques-francois mb-3 mt-2 ml-5 sm:text-4xl md:text-5xl">Sabores y cafe</p>
         <div className="w-auto flex flex-row self-center mr-5 items-center justify-center">
-          <button  className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover:bg-orange-300" onClick={goToLogin}>Iniciar Sesion</button>
-          <button  className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover:bg-orange-300" onClick={toRegister}>Unete Ahora</button>
+        {access ? (
+            <button
+              className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover-bg-orange-300"
+              onClick={logout}
+            >
+              Cerrar Sesión
+            </button>
+          ) : (
+            <>
+              <button
+                className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover-bg-orange-300"
+                onClick={goToLogin}
+              >
+                Iniciar Sesión
+              </button>
+              <button
+                className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover-bg-orange-300"
+                onClick={toRegister}
+              >
+                Únete Ahora
+              </button>
+            </>
+          )}
         </div>
       </div>
       <NavBar setImagenSeleccionada={setImagenSeleccionada}/>
