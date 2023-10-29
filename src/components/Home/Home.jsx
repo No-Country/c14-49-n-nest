@@ -54,7 +54,7 @@ const Home = () => {
     </div>
         <div className="flex w-3/4 justify-center items-center bg-orange-300">
         {imagenSeleccionada === 'imgCarta' && <Carta />}
-        {imagenSeleccionada === 'imgFrases' && <Frases />}
+        {imagenSeleccionada === 'imgFrases' && <Frases setImagenSeleccionada={setImagenSeleccionada}/>}
         {imagenSeleccionada === 'imgCultura' && <Cultura />}  
         {imagenSeleccionada === 'imgMerch' && <Merch />}
         {imagenSeleccionada === 'createFrases' && <CreateFrases />}

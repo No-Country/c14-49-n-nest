@@ -130,10 +130,10 @@ const Carta = () => {
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           Carta
         </h2>
-        <div className="flex flex-wrap gap-3 justify-center items-center md:gap-10">
+        <div className="flex flex-wrap gap-3 justify-center items-center">
           {products.slice(startIndex, endIndex).map((product) => (
             <div key={product.id} className="group relative">
-              <Card className="mt-6 w-[240px] flex flex-col bg-gray-200 md:w-[270px] md:h-[470px]">
+              <Card className="mt-6 w-[240px] flex flex-col bg-gray-200 md:h-[470px]">
                 <CardHeader className="h-2/3">
                   <div className="aspect-h-1 aspect-w-1 w-full h-full overflow-hidden rounded-md bg-gray-300 lg:aspect-none group-hover:opacity-75 lg:h-80">
                     <img
