@@ -4,7 +4,7 @@ import axios from "axios";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit,formState: { errors } } = useForm();
   const goToLogin = () => {
     navigate("/login");
   };
@@ -12,7 +12,10 @@ const Register = () => {
     const termsAccepted = data.termsAccepted;
     
     if (!termsAccepted) {
-      alert("Debes aceptar los términos y condiciones para registrarte.");
+      <div>
+        Debes aceptar los términos y condiciones para registrarte.
+      </div>
+      // ("Debes aceptar los términos y condiciones para registrarte.");
       return;
     }
 
@@ -25,7 +28,7 @@ const Register = () => {
         }
       })
       .catch((error) => {
-        alert("Algo falló", error);
+        console.log("Algo falló", error);
       });
   };
   return (
@@ -53,23 +56,30 @@ const Register = () => {
     <div className="flex flex-row justify-center items-center">
       <div className="flex flex-col">
         <input className="m-3 rounded-md p-2" placeholder="Nombre completo" {...register("name", { required: true })} />
-        <input className="m-3 rounded-md p-2" placeholder="Numero de telefono" {...register("phoneNumber")} />
+        {errors.name && <span className="text-red-800 mx-3">Complete el campo</span>}
+        <input className="m-3 rounded-md p-2" placeholder="Numero de telefono" {...register("phoneNumber", { required: true })} />
+        {errors.phoneNumber && <span  className="text-red-800 mx-3">Complete el campo</span>}
         <input
             type="date"
             className="m-3 rounded-md p-2"
             placeholder="Date of Birth"
-          {...register("birthDate")} />
+          {...register("birthDate", { required: true })} />
+          {errors.birthDate && <span className="text-red-800 mx-3">Complete el campo</span>}
       </div>
       <div className="flex flex-col">
-        <input className="m-3 rounded-md p-2" placeholder="Email address" {...register("email", { required: true })} />
-        <input className="m-3 rounded-md p-2" placeholder="Password" {...register("password")} />
-        <input className="m-3 rounded-md p-2" placeholder="Confirm password" {...register("confirmPassword")} />
+        <input className="m-3 rounded-md p-2" type="email" placeholder="Email address" {...register("email", { required: true })} />
+        {errors.email && <span className="text-red-800 mx-3">Complete el campo</span>}
+        <input className="m-3 rounded-md p-2" placeholder="Password" {...register("password", { required: true })} />
+        {errors.password && <span className="text-red-800 mx-3">Complete el campo</span>}
+        <input className="m-3 rounded-md p-2" placeholder="Confirm password" {...register("confirmPassword", { required: true })} />
+        {errors.confirmPassword && <span className="text-red-800 mx-3">Complete el campo</span>}
       </div>
     </div>
     <div className="text-center mt-5">
           <input type="checkbox" id="termsAccepted" {...register("termsAccepted")} />
           <label className="font-inter text-black hover:text-white" htmlFor="termsAccepted">Acepto los términos y condiciones</label>
         </div>
+        {onSubmit}
     <div className="text-center mt-4">
     <button className="w-32 bg-black rounded-lg text-white p-3 mx-auto font-inter mb-7" type="submit">Crear cuenta</button>
   </div>
