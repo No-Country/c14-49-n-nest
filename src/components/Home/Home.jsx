@@ -8,7 +8,6 @@ import Cultura from "../HomeOptions/Cultura";
 import Merch from "../HomeOptions/Merch";
 import { setAllProducts } from "../Redux/sliceCart";
 import { useDispatch } from "react-redux";
-
 const Home = ({ access, setAccess }) => {
   const [imagenSeleccionada, setImagenSeleccionada] = useState("imgCarta");
   const navigate = useNavigate();
@@ -76,7 +75,7 @@ const Home = ({ access, setAccess }) => {
       <div className="w-full h-96 relative">
         <img
           className="w-full h-full object-cover"
-          src="src\assets\imgHome.jpg"
+          src="https://cdn.pixabay.com/photo/2016/04/12/11/19/coffee-1324126_640.jpg"
           alt=""
         />
         <div className="absolute bottom-0 left-0 w-full">
