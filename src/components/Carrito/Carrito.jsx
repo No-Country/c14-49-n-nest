@@ -37,7 +37,6 @@ const Carrito = ({ access, setAccess }) => {
     setAccess(false);
     navigate("/login");
   };
-  console.log(cart);
   return (
     <div className="w-full h-full min-h-screen bg-orange-200 flex flex-col justify-center items-center">
       <div className="w-full h-[10vh] flex flex-row justify-between bg-orange-300">
@@ -81,12 +80,12 @@ const Carrito = ({ access, setAccess }) => {
         <div className="w-2/3 h-full flex flex-wrap justify-center items-center">
           {cart.map((product) => (
             <div
-              className="m-2 flex w-96 justify-center items-center bg-amber-600 h-72"
+              className="m-2 flex w-96 justify-center items-center bg-amber-600 h-64"
               key={product.id}
             >
-              <div className="w-1/2 flex flex-col items-center p-3">
+              <div className="w-5/12 flex flex-col items-center p-3">
                 <p className="text-xl font-bold">{product.name}</p>
-                <p>{product.price}</p>
+                <p>${product.price}</p>
                 <div className="flex p-3">
                   <button
                     onClick={() => addCart(product.id)}
@@ -103,8 +102,12 @@ const Carrito = ({ access, setAccess }) => {
                 </div>
                 <p>Cantidad: {product.quantity}</p>
               </div>
-              <div className="w-1/2 flex bg-gray-200 h-full">
-                <img src={product.imageSrc} alt={product.name} />
+              <div className="w-7/12 flex bg-gray-200 h-full">
+                <img
+                  className="w-full h-full"
+                  src={product.imageUrl}
+                  alt={product.name}
+                />
               </div>
             </div>
           ))}

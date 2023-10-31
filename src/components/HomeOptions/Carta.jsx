@@ -51,8 +51,7 @@ const Carta = () => {
                 <CardHeader className="h-2/3">
                   <div className="aspect-h-1 aspect-w-1 w-full h-full overflow-hidden rounded-md bg-gray-300 lg:aspect-none group-hover:opacity-75 lg:h-80">
                     <img
-                      src={product.imageSrc}
-                      alt={product.imageAlt}
+                      src={product.imageUrl}
                       className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                     />
                   </div>
@@ -63,7 +62,7 @@ const Carta = () => {
                       {product.name}
                     </Typography>
                     <Typography className="mb-2 font-inter text-sm">
-                      {product.descripcion}
+                      {product.description}
                     </Typography>
                   </div>
                   <div className="pt-0 flex flex-row justify-between">

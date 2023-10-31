@@ -87,7 +87,7 @@ const Home = ({ access, setAccess }) => {
       <div className="w-full h-96 relative">
         <img
           className="w-full h-full object-cover"
-          src="https://cdn.pixabay.com/photo/2016/04/12/11/19/coffee-1324126_640.jpg"
+          src="https://cdn.pixabay.com/photo/2019/09/12/18/29/street-cafe-4472312_640.jpg"
           alt=""
         />
         <div className="absolute bottom-0 left-0 w-full">
