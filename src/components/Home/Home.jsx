@@ -35,9 +35,21 @@ const Home = ({ access, setAccess }) => {
       });
   }, []);
   const imagenes = [
-    { id: "imgCarta", src: "src/assets/imgCarta.jpg", alt: "Carta" },
-    { id: "imgCultura", src: "src/assets/imgCultura.jpg", alt: "Cultura" },
-    { id: "imgMerch", src: "src/assets/imgMerch.jpg", alt: "Merch" },
+    {
+      id: "imgCarta",
+      src: "https://cdn.pixabay.com/photo/2016/11/19/12/54/drink-1839134_640.jpg",
+      alt: "Carta",
+    },
+    {
+      id: "imgCultura",
+      src: "https://cdn.pixabay.com/photo/2017/07/31/19/27/coffee-2560260_640.jpg",
+      alt: "Cultura",
+    },
+    {
+      id: "imgMerch",
+      src: "https://cdn.pixabay.com/photo/2017/01/15/18/54/bahamas-1982413_640.jpg",
+      alt: "Merch",
+    },
   ];
   return (
     <div className="w-full bg-orange-100 h-full min-h-screen flex flex-col">
