@@ -21,7 +21,7 @@ const Register = () => {
     }
 
     await axios
-      .post("http://localhost:3001/login", data)
+      .post("http://localhost:3001/create", data)
       .then(({ data }) => {
         if (data) {
           alert("Usuario creado con éxito");
@@ -40,7 +40,12 @@ const Register = () => {
         </p>
         <div className="w-auto flex flex-row self-center mr-5 items-center justify-center">
           <p className="text-xs text-primary-300">Ya tienes una cuenta?</p>
-          <button  onClick={goToLogin} className='self-center bg-primary-300 text-primary-200 p-2 rounded-lg  mb-3 mt-2 ml-5 text-xl hover:bg-primary-200 hover:text-primary-300'>Iniciar Sesion</button>
+          <button
+            onClick={goToLogin}
+            className="self-center bg-primary-300 text-primary-200 p-2 rounded-lg  mb-3 mt-2 ml-5 text-xl hover:bg-primary-200 hover:text-primary-300"
+          >
+            Iniciar Sesion
+          </button>
         </div>
       </div>
       <div className="h-[90vh] flex flex-row">
