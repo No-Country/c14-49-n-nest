@@ -36,9 +36,9 @@ const Home = ({ access, setAccess }) => {
       });
   }, []);
   const imagenes = [
-    { id: "imgCarta", src: "/src/assets/imgCarta.jpg", alt: "Carta" },
-    { id: "imgCultura", src: "/src/assets/imgCultura.jpg", alt: "Cultura" },
-    { id: "imgMerch", src: "/src/assets/imgMerch.jpg", alt: "Merch" },
+    { id: "imgCarta", src: "src/assets/imgCarta.jpg", alt: "Carta" },
+    { id: "imgCultura", src: "src/assets/imgCultura.jpg", alt: "Cultura" },
+    { id: "imgMerch", src: "src/assets/imgMerch.jpg", alt: "Merch" },
   ];
   return (
     <div className="w-full bg-orange-100 h-full min-h-screen flex flex-col">
@@ -76,7 +76,7 @@ const Home = ({ access, setAccess }) => {
       <div className="w-full h-96 relative">
         <img
           className="w-full h-full object-cover"
-          src="\src\assets\imgHome.jpg"
+          src="src\assets\imgHome.jpg"
           alt=""
         />
         <div className="absolute bottom-0 left-0 w-full">
