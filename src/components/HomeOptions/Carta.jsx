@@ -125,15 +125,15 @@ const Carta = () => {
     dispatch(setCart(add))
   }
   return (
-    <div className="bg-primary-300 my-3 w-4/5 rounded-3xl">
+    <div className="bg-primary-300 my-3 w-11/12 rounded-3xl">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           Carta
         </h2>
-        <div className="flex flex-wrap gap-4 justify-center items-center">
+        <div className="flex flex-wrap gap-3 items-center w-full justify-around">
           {products.slice(startIndex, endIndex).map((product) => (
             <div key={product.id} className="group relative">
-              <Card className="mt-6 w-[240px] flex flex-col bg-gray-200 md:h-[490px] md:mx-3 xl:mx-3">
+              <Card className="mt-6 w-[260px] flex flex-col bg-gray-200 md:h-[490px]">
                 <CardHeader className="h-2/3">
                   <div className="aspect-h-1 aspect-w-1 w-full h-full overflow-hidden rounded-md bg-gray-300 lg:aspect-none group-hover:opacity-75 lg:h-80">
                     <img

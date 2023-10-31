@@ -73,7 +73,7 @@ const Home = ({ access, setAccess }) => {
         </div>
       ))}
     </div>
-        <div className="flex w-3/4 justify-center items-center bg-primary-400">
+        <div className="flex w-3/4 justify-center items-center bg-primary-100">
         {imagenSeleccionada === 'imgCarta' && <Carta />}
         {imagenSeleccionada === 'imgCultura' && <Cultura />}  
         {imagenSeleccionada === 'imgMerch' && <Merch />}
