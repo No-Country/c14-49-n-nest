@@ -19,10 +19,10 @@ export const sliceCart = createSlice({
       if (prod) {
         const existingProduct = state.cart.find((item) => item.id == prod.id);
         if (existingProduct) {
-          existingProduct.quantity += 1; // Incrementa la cantidad del producto existente
+          existingProduct.quantity += 1;
           existingProduct.countInStock -= 1;
         } else {
-          state.cart.push({ ...prod, quantity: 1 }); // Agrega un nuevo producto al carrito
+          state.cart.push({ ...prod, quantity: 1 });
         }
       }
     },
@@ -33,11 +33,23 @@ export const sliceCart = createSlice({
       if (existingProduct) {
         const index = state.cart.findIndex((item) => item.id == action.payload);
         if (existingProduct.quantity > 1) {
-          existingProduct.quantity -= 1; // Disminuye la cantidad del producto
+          existingProduct.quantity -= 1;
           existingProduct.countInStock += 1;
         } else {
-          state.cart.splice(index, 1); // Elimina el producto del carrito
+          state.cart.splice(index, 1);
         }
+      }
+    },
+    setOrderByPrice: (state, action) => {
+      const order = action.payload;
+      if (order === "Asc") {
+        state.allProducts = [...state.allProducts].sort(
+          (a, b) => a.price - b.price
+        );
+      } else if (order === "Des") {
+        state.allProducts = [...state.allProducts].sort(
+          (a, b) => b.price - a.price
+        );
       }
     },
   },
@@ -46,6 +58,7 @@ export const sliceCart = createSlice({
 export const getAllProducts = (state) => state.sliceProducts.allProducts;
 export const getCart = (state) => state.sliceProducts.cart;
 
-export const { setAllProducts, setCart, setRemoveCart } = sliceCart.actions;
+export const { setAllProducts, setCart, setRemoveCart, setOrderByPrice } =
+  sliceCart.actions;
 
 export default sliceCart.reducer;

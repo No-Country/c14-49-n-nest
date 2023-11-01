@@ -38,8 +38,8 @@ const Carrito = ({ access, setAccess }) => {
     navigate("/login");
   };
   return (
-    <div className="w-full h-full min-h-screen bg-orange-200 flex flex-col justify-center items-center">
-      <div className="w-full h-[10vh] flex flex-row justify-between bg-orange-300">
+    <div className="w-full h-full min-h-screen bg-primary-400 flex flex-col justify-center items-center">
+      <div className="w-full h-[10vh] flex flex-row justify-between bg-primary-100">
         <button
           value=" "
           onClick={router}
@@ -47,7 +47,7 @@ const Carrito = ({ access, setAccess }) => {
         >
           Volver al Inicio
         </button>
-        <p className="text-4xl font-jacques-francois-shadow self-center">
+        <p className="text-4xl font-jacques-francois-shadow self-center text-primary-300">
           Carrito
         </p>
         <div className="w-auto flex flex-row self-center mr-5 items-center justify-center">
@@ -80,13 +80,13 @@ const Carrito = ({ access, setAccess }) => {
         <div className="w-2/3 h-full flex flex-wrap justify-center items-center">
           {cart.map((product) => (
             <div
-              className="m-2 flex w-96 justify-center items-center bg-amber-600 h-64"
+              className="m-2 flex w-96 justify-center items-center bg-primary-100 h-64"
               key={product.id}
             >
               <div className="w-5/12 flex flex-col items-center p-3">
-                <p className="text-xl font-bold">{product.name}</p>
-                <p>${product.price}</p>
-                <div className="flex p-3">
+                <p className="text-xl text-primary-300">{product.name}</p>
+                <p className="text-primary-300">${product.price}</p>
+                <div className="flex p-3 mx-1">
                   <button
                     onClick={() => addCart(product.id)}
                     className="py-1 px-2 m-1 bg-orange-200 rounded-full hover:bg-orange-100"
@@ -100,7 +100,7 @@ const Carrito = ({ access, setAccess }) => {
                     Eliminar
                   </button>
                 </div>
-                <p>Cantidad: {product.quantity}</p>
+                <p className="text-primary-300">Cantidad: {product.quantity}</p>
               </div>
               <div className="w-7/12 flex bg-gray-200 h-full">
                 <img
@@ -112,21 +112,21 @@ const Carrito = ({ access, setAccess }) => {
             </div>
           ))}
         </div>
-        <div className="w-1/3 flex flex-col justify-center items-center bg-orange-100">
-          <div className="w-1/2 bg-orange-200 flex flex-col items-start py-5 justify-center rounded-xl">
-            <div className="flex justify-between w-full">
-              <p className="px-2">Productos ({cantidad})</p>
-              <p className="mr-3">${total.toFixed(2)}</p>
+        <div className="w-1/3 flex flex-col justify-center items-center bg-primary-200">
+          <div className="w-1/2 bg-primary-500 flex flex-col items-start py-5 justify-center rounded-xl">
+            <div className="flex justify-between w-full my-1">
+              <p className="px-2  text-primary-300">Productos ({cantidad})</p>
+              <p className="mr-3  text-primary-300">${total.toFixed(2)}</p>
             </div>
             <div className="flex justify-between w-full">
-              <p className="px-2">Envio:</p>
-              <p className="mr-3 n ">Gratis</p>
+              <p className="px-2  text-primary-300">Envio:</p>
+              <p className="mr-3  text-primary-300 ">Gratis</p>
             </div>
-            <div className="flex justify-between w-full">
-              <p className="px-2">Total:</p>
-              <p className="mr-3"> ${total.toFixed(2)}</p>
+            <div className="flex justify-between w-full text-primary-300 my-2">
+              <p className="px-2 text-primary-300">Total:</p>
+              <p className="mr-3  text-primary-300"> ${total.toFixed(2)}</p>
             </div>
-            <button className="bg-orange-300 p-1 m-2 rounded-lg w-[90%] self-center hover:bg-orange-100">
+            <button className="bg-primary-400 p-1 m-2 rounded-lg w-[90%] self-center hover:bg-orange-100">
               Confirmar compra
             </button>
           </div>

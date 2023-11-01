@@ -1,11 +1,13 @@
 const Cultura = () => {
   return (
     <div className="w-3/4 flex items-center justify-center flex-col bg-slate-200 my-2">
-      <h1 className="p-5 text-5xl m-2 font-jacques-francois-shadow">Cultura y Mision de Sabores y Cafe</h1>
+      <h1 className="p-5 text-5xl m-2 font-jacques-francois-shadow">
+        Cultura y Mision de Sabores y Cafe
+      </h1>
       <p className="col-2 p-5 m-3 text-xl font-inter">
         En nuestra cafetería, nos esforzamos por crear una experiencia única
         para nuestros clientes. Nuestra filosofía se basa en una profunda pasión
-        por el café y un compromiso inquebrantable con la calidad y la  
+        por el café y un compromiso inquebrantable con la calidad y la
         autenticidad. Creemos en el poder de una taza de café para conectar a
         las personas y enriquecer sus vidas. Es por eso que seleccionamos
         cuidadosamente los granos de café de origen, priorizando aquellos que

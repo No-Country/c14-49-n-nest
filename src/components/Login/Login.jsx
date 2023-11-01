@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+
 const Login = ({ setAccess }) => {
   const {
     register,
@@ -11,6 +13,7 @@ const Login = ({ setAccess }) => {
   const toRegister = () => {
     navigate("/register");
   };
+  const notify = () => toast.error("Usuario o contraseña incorrectos");
   const onSubmit = async (data) => {
     try {
       const URL = "http://localhost:3001/login";
@@ -25,7 +28,7 @@ const Login = ({ setAccess }) => {
         console.log("Error de autenticación");
       }
     } catch (error) {
-      window.alert(error.response.data.message);
+      notify();
     }
   };
   const goHome = () => {
@@ -38,6 +41,7 @@ const Login = ({ setAccess }) => {
           Sabores y cafe
         </p>
       </div>
+      <Toaster position="bottom-center" reverseOrder={false} />
       <div className="flex">
         <div className="w-1/2">
           <img

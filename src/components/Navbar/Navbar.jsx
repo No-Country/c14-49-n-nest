@@ -1,10 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { IoCartSharp } from "react-icons/io5";
+import { useSelector } from "react-redux";
+import { getCart } from "../Redux/sliceCart";
+import toast from "react-hot-toast";
 
 const NavBar = ({ setImagenSeleccionada }) => {
   const navigate = useNavigate();
+  const cart = useSelector(getCart);
   const goToCart = () => {
-    navigate("/carrito");
+    if (cart.length > 0) {
+      navigate("/carrito");
+    } else toast.error("El carrito esta vacio");
   };
   const renderContent = (event) => {
     const value = event.target.value;

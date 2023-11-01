@@ -8,6 +8,8 @@ import Cultura from "../HomeOptions/Cultura";
 import Merch from "../HomeOptions/Merch";
 import { setAllProducts } from "../Redux/sliceCart";
 import { useDispatch } from "react-redux";
+import toast, { Toaster } from "react-hot-toast";
+
 const Home = ({ access, setAccess }) => {
   const [imagenSeleccionada, setImagenSeleccionada] = useState("imgCarta");
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ const Home = ({ access, setAccess }) => {
   };
   const logout = () => {
     setAccess(false);
-    navigate("/login");
+    toast.success("Deslogeo correcto");
   };
   useEffect(() => {
     axios
@@ -53,6 +55,7 @@ const Home = ({ access, setAccess }) => {
   ];
   return (
     <div className="w-full bg-orange-100 h-full min-h-screen flex flex-col">
+      <Toaster reverseOrder={false} />
       <div className="flex justify-between h-[9vh] p-2 bg-primary-300 items-center">
         <p className="self-center font-jacques-francois mb-3 mt-2 ml-5 sm:text-4xl md:text-5xl">
           Sabores y cafe
