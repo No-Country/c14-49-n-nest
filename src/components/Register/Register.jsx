@@ -21,7 +21,7 @@ const Register = () => {
     }
 
     await axios
-      .post("http://localhost:3001/login", data)
+      .post("http://localhost:3001/create", data)
       .then(({ data }) => {
         if (data) {
           alert("Usuario creado con éxito");
@@ -40,13 +40,18 @@ const Register = () => {
         </p>
         <div className="w-auto flex flex-row self-center mr-5 items-center justify-center">
           <p className="text-xs text-primary-300">Ya tienes una cuenta?</p>
-          <button  onClick={goToLogin} className='self-center bg-primary-300 text-primary-200 p-2 rounded-lg  mb-3 mt-2 ml-5 text-xl hover:bg-primary-200 hover:text-primary-300'>Iniciar Sesion</button>
+          <button
+            onClick={goToLogin}
+            className="self-center bg-primary-300 text-primary-200 p-2 rounded-lg  mb-3 mt-2 ml-5 text-xl hover:bg-primary-200 hover:text-primary-300"
+          >
+            Iniciar Sesion
+          </button>
         </div>
       </div>
       <div className="h-[90vh] flex flex-row">
         <div className="w-2/5 h-full">
           <img
-            src="src\assets\cafe-1869656_1920.jpg"
+            src="https://cdn.pixabay.com/photo/2017/08/01/02/04/coffee-2562810_640.jpg"
             className="w-full h-full object-cover"
             alt=""
           />
@@ -62,7 +67,7 @@ const Register = () => {
             <div className="flex flex-row justify-center items-center">
               <div className="flex flex-col">
                 <input
-                  className="m-3 rounded-md p-2"
+                  className="my-1 p-1 m-3 border-2 border-t-transparent text-primary-300 border-primary-400 bg-transparent border-r-transparent border-l-transparent placeholder:text-primary-300"
                   placeholder="Nombre completo"
                   {...register("name", { required: true })}
                 />
@@ -70,7 +75,7 @@ const Register = () => {
                   <span className="text-red-800 mx-3">Complete el campo</span>
                 )}
                 <input
-                  className="m-3 rounded-md p-2"
+                  className="my-1 p-1 m-3 border-2 border-t-transparent text-primary-300 border-primary-400 bg-transparent border-r-transparent border-l-transparent placeholder:text-primary-300"
                   placeholder="Numero de telefono"
                   {...register("phoneNumber", { required: true })}
                 />
@@ -79,7 +84,7 @@ const Register = () => {
                 )}
                 <input
                   type="date"
-                  className="m-3 rounded-md p-2"
+                  className="my-1 p-1 border-2 m-3 border-t-transparent text-primary-300 border-primary-400 bg-transparent border-r-transparent border-l-transparent placeholder:text-primary-300"
                   placeholder="Date of Birth"
                   {...register("birthDate", { required: true })}
                 />
@@ -89,7 +94,7 @@ const Register = () => {
               </div>
               <div className="flex flex-col">
                 <input
-                  className="m-3 rounded-md p-2"
+                  className="my-1 p-1 border-2 m-3 border-t-transparent text-primary-300 border-primary-400 bg-transparent border-r-transparent border-l-transparent placeholder:text-primary-300"
                   type="email"
                   placeholder="Email address"
                   {...register("email", { required: true })}
@@ -98,7 +103,7 @@ const Register = () => {
                   <span className="text-red-800 mx-3">Complete el campo</span>
                 )}
                 <input
-                  className="m-3 rounded-md p-2"
+                  className="my-1 p-1 border-2 m-3 border-t-transparent text-primary-300 border-primary-400 bg-transparent border-r-transparent border-l-transparent placeholder:text-primary-300"
                   placeholder="Password"
                   {...register("password", { required: true })}
                 />
@@ -106,7 +111,7 @@ const Register = () => {
                   <span className="text-red-800 mx-3">Complete el campo</span>
                 )}
                 <input
-                  className="m-3 rounded-md p-2"
+                  className="my-1 p-1 border-2 m-3 border-t-transparent text-primary-300 border-primary-400 bg-transparent border-r-transparent border-l-transparent placeholder:text-primary-300"
                   placeholder="Confirm password"
                   {...register("confirmPassword", { required: true })}
                 />
