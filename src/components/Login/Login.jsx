@@ -20,6 +20,7 @@ const Login = ({ setAccess }) => {
       const response = await axios.get(
         URL + `?email=${data.email}&password=${data.password}`
       );
+      console.log(response);
       const userData = response.data;
       if (userData) {
         setAccess(true);

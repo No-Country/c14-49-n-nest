@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   allProducts: [],
   cart: [],
+  searchProducts: [],
 };
 
 export const sliceCart = createSlice({
@@ -46,19 +47,35 @@ export const sliceCart = createSlice({
         state.allProducts = [...state.allProducts].sort(
           (a, b) => a.price - b.price
         );
+        state.searchProducts = [...state.searchProducts].sort(
+          (a, b) => a.price - b.price
+        );
       } else if (order === "Des") {
         state.allProducts = [...state.allProducts].sort(
           (a, b) => b.price - a.price
         );
+        state.searchProducts = [...state.searchProducts].sort(
+          (a, b) => b.price - a.price
+        );
       }
+    },
+    setSearchProducts: (state, action) => {
+      const order = action.payload;
+      state.searchProducts = order;
     },
   },
 });
 
 export const getAllProducts = (state) => state.sliceProducts.allProducts;
 export const getCart = (state) => state.sliceProducts.cart;
+export const getSearchProducts = (state) => state.sliceProducts.searchProducts;
 
-export const { setAllProducts, setCart, setRemoveCart, setOrderByPrice } =
-  sliceCart.actions;
+export const {
+  setAllProducts,
+  setCart,
+  setRemoveCart,
+  setOrderByPrice,
+  setSearchProducts,
+} = sliceCart.actions;
 
 export default sliceCart.reducer;

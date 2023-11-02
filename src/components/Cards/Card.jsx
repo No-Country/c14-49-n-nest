@@ -16,35 +16,37 @@ export default function ProductCard({ products }) {
     dispatch(setCart(add));
   };
   return (
-    <div key={products.id} className="group relative">
-      <Card className="mt-6 w-[260px] flex flex-col bg-gray-200 md:h-[490px] md:mx-3 xl:mx-3">
-        <CardHeader className="h-2/3">
-          <div className="aspect-h-1 aspect-w-1 w-full h-full overflow-hidden rounded-md bg-gray-300 lg:aspect-none group-hover:opacity-75 lg:h-80">
+    <div key={products.id} className="group mx-4">
+      <Card className="mt-6 w-[280px] flex flex-col bg-primary-100 md:h-[490px] md:mx-3 xl:mx-3">
+        <CardHeader className="h-2/3 mt-4">
+          <div className="w-full h-full overflow-hidden rounded-md bg-gray-300 lg:aspect-none group-hover:opacity-75">
             <img
               src={products.imageUrl}
               className="h-full w-full object-cover object-center lg:h-full lg:w-full"
             />
           </div>
         </CardHeader>
-        <CardBody className="min-h-[210px] flex flex-col justify-between">
+        <CardBody className="min-h-[200px] flex flex-col justify-between">
           <div>
-            <Typography className="font-serif text-lg mb-2">
+            <Typography className="font-serif text-lg mb-2 text-primary-300">
               {products.name}
             </Typography>
-            <Typography className="mb-2 font-inter text-sm">
+            <Typography className="mb-1 font-inter text-sm text-primary-300">
               {products.description}
             </Typography>
           </div>
-          <div className="pt-0 flex flex-row justify-between">
+          <div className="flex flex-row justify-between">
             <Button
               value={products.id}
               onClick={addCart}
-              className="text-black p-2 bg-slate-400 hover:bg-slate-300 flex justify-center items-center"
+              className="p-2 bg-primary-200 text-primary-300 hover:bg-primary-300 hover:text-primary-200 flex justify-center items-center"
             >
               <IoIosAddCircleOutline />
               Añadir al carrito
             </Button>
-            <Typography>${products.price}</Typography>
+            <Typography className="text-primary-300">
+              ${products.price}
+            </Typography>
           </div>
         </CardBody>
       </Card>

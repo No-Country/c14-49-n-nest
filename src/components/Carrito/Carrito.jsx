@@ -33,6 +33,10 @@ const Carrito = ({ access, setAccess }) => {
     dispatch(setRemoveCart(id));
     setCartChangeFlag(!cartChangeFlag);
   };
+  if (cart.length === 0) {
+    navigate("/");
+  }
+  console.log(cart);
   const logout = () => {
     setAccess(false);
     navigate("/login");
@@ -83,7 +87,7 @@ const Carrito = ({ access, setAccess }) => {
               className="m-2 flex w-96 justify-center items-center bg-primary-100 h-64"
               key={product.id}
             >
-              <div className="w-5/12 flex flex-col items-center p-3">
+              <div className="w-6/12 flex flex-col items-center p-3">
                 <p className="text-xl text-primary-300">{product.name}</p>
                 <p className="text-primary-300">${product.price}</p>
                 <div className="flex p-3 mx-1">
@@ -102,9 +106,9 @@ const Carrito = ({ access, setAccess }) => {
                 </div>
                 <p className="text-primary-300">Cantidad: {product.quantity}</p>
               </div>
-              <div className="w-7/12 flex bg-gray-200 h-full">
+              <div className="w-6/12 flex bg-gray-200 h-full">
                 <img
-                  className="w-full h-full"
+                  className="w-full h-full object-cover"
                   src={product.imageUrl}
                   alt={product.name}
                 />

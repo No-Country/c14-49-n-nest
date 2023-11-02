@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -16,24 +17,26 @@ const Register = () => {
     const termsAccepted = data.termsAccepted;
 
     if (!termsAccepted) {
-      <div>Debes aceptar los términos y condiciones para registrarte.</div>;
+      toast.error("Debes aceptar los terminos y condiciones");
       return;
     }
 
     await axios
-      .post("http://localhost:3001/create", data)
+      .post("http://localhost:3001/user/create", data)
       .then(({ data }) => {
         if (data) {
-          alert("Usuario creado con éxito");
+          toast.success("Usuario creado con exito");
           navigate("/login");
         }
       })
       .catch((error) => {
-        console.log("Algo falló", error);
+        console.log(error);
+        toast.error(error.response.data.message);
       });
   };
   return (
     <div className="w-full bg-primary-100 h-screen flex flex-col">
+      <Toaster reverseOrder={false} />
       <div className="h-[10vh] flex flex-row justify-between">
         <p className="self-center text-5xl font-jacques-francois-shadow text-primary-300 mb-3 mt-2 ml-5">
           Sabores y cafe

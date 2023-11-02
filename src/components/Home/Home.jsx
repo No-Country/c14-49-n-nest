@@ -9,6 +9,7 @@ import Merch from "../HomeOptions/Merch";
 import { setAllProducts } from "../Redux/sliceCart";
 import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
+import SearchProducts from "../SearchProducts/SearchProducts";
 
 const Home = ({ access, setAccess }) => {
   const [imagenSeleccionada, setImagenSeleccionada] = useState("imgCarta");
@@ -29,7 +30,7 @@ const Home = ({ access, setAccess }) => {
       .get(`http://localhost:3001/products`)
       .then((response) => {
         const products = response.data;
-        setAllProducts(products); // Actualiza el estado de los productos
+        setAllProducts(products);
         dispatch(setAllProducts(products));
       })
       .catch((error) => {
@@ -94,15 +95,15 @@ const Home = ({ access, setAccess }) => {
           alt=""
         />
         <div className="absolute bottom-0 left-0 w-full">
-          <SearchBar />
+          <SearchBar setImagenSeleccionada={setImagenSeleccionada} />
         </div>
       </div>
       <div className="flex flex-row">
-        <div className="flex flex-col w-1/4 justify-center items-center">
+        <div className="flex flex-col w-1/4 justify-center items-center bg-primary-400">
           {imagenes.map((imagen) => (
             <div
               key={imagen.id}
-              className={`h-3/4 w-3/4 rounded-2xl m-2 hover:h-[96%] hover:w-[96%] ${
+              className={`h-3/4 w-3/4 rounded-2xl m-2 hover:scale-105  ${
                 imagenSeleccionada === imagen.id
                   ? "border-4 border-orange-500"
                   : ""
@@ -117,10 +118,11 @@ const Home = ({ access, setAccess }) => {
             </div>
           ))}
         </div>
-        <div className="flex w-3/4 justify-center items-center bg-primary-400">
+        <div className="flex w-3/4 justify-center items-center bg-primary-100">
           {imagenSeleccionada === "imgCarta" && <Carta />}
           {imagenSeleccionada === "imgCultura" && <Cultura />}
           {imagenSeleccionada === "imgMerch" && <Merch />}
+          {imagenSeleccionada === "search" && <SearchProducts />}
         </div>
       </div>
     </div>
