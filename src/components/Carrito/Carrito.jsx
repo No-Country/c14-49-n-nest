@@ -2,8 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCart, setCart, setRemoveCart } from "../Redux/sliceCart";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { isLogged } from "../Redux/sliceUser";
 
-const Carrito = ({ access, setAccess }) => {
+const Carrito = () => {
   const cart = useSelector(getCart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const Carrito = ({ access, setAccess }) => {
     const value = event.target.value;
     navigate(`/${value}`);
   };
+  const access = useSelector(isLogged);
   const [total, setTotal] = useState(0);
   const [cartChangeFlag, setCartChangeFlag] = useState(false);
   const [cantidad, setCantidad] = useState(0);

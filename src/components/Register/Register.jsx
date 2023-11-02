@@ -79,8 +79,8 @@ const Register = () => {
                 )}
                 <input
                   className="my-1 p-1 m-3 border-2 border-t-transparent text-primary-300 border-primary-400 bg-transparent border-r-transparent border-l-transparent placeholder:text-primary-300"
-                  placeholder="Numero de telefono"
-                  {...register("phoneNumber", { required: true })}
+                  placeholder="Apellido"
+                  {...register("lastName", { required: true })}
                 />
                 {errors.phoneNumber && (
                   <span className="text-red-800 mx-3">Complete el campo</span>

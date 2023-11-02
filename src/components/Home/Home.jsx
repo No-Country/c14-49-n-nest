@@ -7,24 +7,29 @@ import Carta from "../HomeOptions/Carta";
 import Cultura from "../HomeOptions/Cultura";
 import Merch from "../HomeOptions/Merch";
 import { setAllProducts } from "../Redux/sliceCart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import SearchProducts from "../SearchProducts/SearchProducts";
+import { logout, isLogged, setAuthToken } from "../Redux/sliceUser";
 
-const Home = ({ access, setAccess }) => {
+const Home = () => {
   const [imagenSeleccionada, setImagenSeleccionada] = useState("imgCarta");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const access = useSelector(isLogged);
+  console.log(access);
   const toRegister = () => {
     navigate("/register");
   };
   const goToLogin = () => {
     navigate("/login");
   };
-  const logout = () => {
-    setAccess(false);
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem("authToken");
     toast.success("Deslogeo correcto");
   };
+
   useEffect(() => {
     axios
       .get(`http://localhost:3001/products`)
@@ -54,6 +59,10 @@ const Home = ({ access, setAccess }) => {
       alt: "Merch",
     },
   ];
+  const authToken = localStorage.getItem("authToken");
+  if (authToken) {
+    dispatch(setAuthToken(authToken));
+  }
   return (
     <div className="w-full bg-orange-100 h-full min-h-screen flex flex-col">
       <Toaster reverseOrder={false} />
@@ -65,7 +74,7 @@ const Home = ({ access, setAccess }) => {
           {access ? (
             <button
               className="self-center bg-primary-100 text-white p-2 rounded-lg  mb-3 mt-2 ml-5 text-xl hover:bg-primary-200 "
-              onClick={logout}
+              onClick={handleLogout}
             >
               Cerrar Sesión
             </button>

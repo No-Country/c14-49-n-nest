@@ -5,21 +5,22 @@ const initialState = {
   token: null,
   email: "",
   name: "",
+  lastName: "",
 };
 export const userHandler = createSlice({
   name: "user",
   initialState,
   reducers: {
-    login: (state) => {
+    login: (state, action) => {
       state.isLoggedIn = true;
+      state.token = action.payload;
     },
     logout: (state) => {
       state.isLoggedIn = false;
       state.token = null;
-      (state.email = ""),
-        (state.name = ""),
-        (state.lastname = ""),
-        (state.location = null);
+      state.email = "";
+      state.name = "";
+      state.lastName = "";
     },
     setAuthToken: (state, action) => {
       state.token = action.payload;
@@ -30,6 +31,9 @@ export const userHandler = createSlice({
     setName: (state, action) => {
       state.name = action.payload;
     },
+    setLastName: (state, action) => {
+      state.lastName = action.payload;
+    },
   },
 });
 
@@ -37,8 +41,16 @@ export const isLogged = (state) => state.user.isLoggedIn;
 export const getToken = (state) => state?.user?.token;
 export const getMail = (state) => state?.user?.email;
 export const getName = (state) => state?.user?.name;
+export const getLastname = (state) => state?.user?.lastName;
 
-export const { login, logout, setAuthToken, setAuthId, setMail, setName } =
-  userHandler.actions;
+export const {
+  login,
+  logout,
+  setAuthToken,
+  setAuthId,
+  setMail,
+  setName,
+  setLastName,
+} = userHandler.actions;
 
 export default userHandler.reducer;

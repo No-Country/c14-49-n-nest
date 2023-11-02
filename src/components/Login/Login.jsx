@@ -2,8 +2,17 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import {
+  login,
+  setAuthToken,
+  setLastName,
+  setMail,
+  setName,
+} from "../Redux/sliceUser";
 
-const Login = ({ setAccess }) => {
+const Login = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -23,8 +32,13 @@ const Login = ({ setAccess }) => {
       console.log(response);
       const userData = response.data;
       if (userData) {
-        setAccess(true);
         navigate("/");
+        dispatch(setAuthToken(userData.token));
+        dispatch(login(userData.token));
+        dispatch(setName(userData.user.name));
+        dispatch(setMail(userData.user.email));
+        dispatch(setLastName(userData.user.lastName));
+        localStorage.setItem("authToken", userData.token);
       } else {
         console.log("Error de autenticación");
       }
@@ -32,6 +46,7 @@ const Login = ({ setAccess }) => {
       notify();
     }
   };
+
   const goHome = () => {
     navigate("/");
   };
