@@ -4,6 +4,7 @@ const initialState = {
   allProducts: [],
   cart: [],
   searchProducts: [],
+  productsByCategory: [],
 };
 
 export const sliceCart = createSlice({
@@ -50,6 +51,9 @@ export const sliceCart = createSlice({
         state.searchProducts = [...state.searchProducts].sort(
           (a, b) => a.price - b.price
         );
+        state.productsByCategory = [...state.productsByCategory].sort(
+          (a, b) => a.price - b.price
+        );
       } else if (order === "Des") {
         state.allProducts = [...state.allProducts].sort(
           (a, b) => b.price - a.price
@@ -57,11 +61,24 @@ export const sliceCart = createSlice({
         state.searchProducts = [...state.searchProducts].sort(
           (a, b) => b.price - a.price
         );
+        state.productsByCategory = [...state.productsByCategory].sort(
+          (a, b) => a.price - b.price
+        );
       }
     },
     setSearchProducts: (state, action) => {
       const order = action.payload;
       state.searchProducts = order;
+    },
+    setProductsByCategory: (state, action) => {
+      const order = action.payload;
+      const filteredProducts = state.allProducts.filter(
+        (product) => product.category === order
+      );
+      state.productsByCategory = filteredProducts;
+      if (order == "todos") {
+        state.productsByCategory = state.allProducts;
+      }
     },
   },
 });
@@ -69,6 +86,8 @@ export const sliceCart = createSlice({
 export const getAllProducts = (state) => state.sliceProducts.allProducts;
 export const getCart = (state) => state.sliceProducts.cart;
 export const getSearchProducts = (state) => state.sliceProducts.searchProducts;
+export const getProductsByCategory = (state) =>
+  state.sliceProducts.productsByCategory;
 
 export const {
   setAllProducts,
@@ -76,6 +95,7 @@ export const {
   setRemoveCart,
   setOrderByPrice,
   setSearchProducts,
+  setProductsByCategory,
 } = sliceCart.actions;
 
 export default sliceCart.reducer;

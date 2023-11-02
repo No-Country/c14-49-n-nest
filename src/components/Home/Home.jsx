@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import SearchProducts from "../SearchProducts/SearchProducts";
 import { logout, isLogged, setAuthToken } from "../Redux/sliceUser";
+import ProductsByCat from "../ProdByCat/ProductsByCat";
 
 const Home = () => {
   const [imagenSeleccionada, setImagenSeleccionada] = useState("imgCarta");
@@ -128,10 +129,13 @@ const Home = () => {
           ))}
         </div>
         <div className="flex w-3/4 justify-center items-center bg-primary-100">
-          {imagenSeleccionada === "imgCarta" && <Carta />}
+          {imagenSeleccionada === "imgCarta" && (
+            <Carta setImagenSeleccionada={setImagenSeleccionada} />
+          )}
           {imagenSeleccionada === "imgCultura" && <Cultura />}
           {imagenSeleccionada === "imgMerch" && <Merch />}
           {imagenSeleccionada === "search" && <SearchProducts />}
+          {imagenSeleccionada === "prodByCat" && <ProductsByCat />}
         </div>
       </div>
     </div>
