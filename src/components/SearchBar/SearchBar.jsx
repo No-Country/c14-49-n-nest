@@ -13,7 +13,6 @@ const SearchBar = ({ setImagenSeleccionada }) => {
       .get(`http://localhost:3001/products/name?name=${searchTerm}`)
       .then((response) => {
         const foundProducts = response.data;
-        setSearchProducts(foundProducts);
         dispatch(setSearchProducts(foundProducts));
       })
       .catch((error) => {
@@ -47,7 +46,7 @@ const SearchBar = ({ setImagenSeleccionada }) => {
             type="button"
             value="Search"
             onClick={handleSearch}
-            className="bg-orange-500 p-2 rounded-tr-lg rounded-br-lg text-black font-semibold hover:bg-orange-800 hover:text-white transition-colors"
+            className="bg-primary-400 p-2 rounded-tr-lg rounded-br-lg text-black font-semibold hover:bg-primary-500 hover:text-white transition-colors"
           />
         </div>
       </div>

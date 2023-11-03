@@ -3,6 +3,8 @@ import { getCart, setCart, setRemoveCart } from "../Redux/sliceCart";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { isLogged } from "../Redux/sliceUser";
+import CustomMenu from "../User/Menu";
+import UserNoRegisted from "../User/UserNoRegisted";
 
 const Carrito = () => {
   const cart = useSelector(getCart);
@@ -39,10 +41,6 @@ const Carrito = () => {
     navigate("/");
   }
   console.log(cart);
-  const logout = () => {
-    setAccess(false);
-    navigate("/login");
-  };
   return (
     <div className="w-full h-full min-h-screen bg-primary-400 flex flex-col justify-center items-center">
       <div className="w-full h-[10vh] flex flex-row justify-between bg-primary-100">
@@ -57,29 +55,7 @@ const Carrito = () => {
           Carrito
         </p>
         <div className="w-auto flex flex-row self-center mr-5 items-center justify-center">
-          {access ? (
-            <button
-              className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover-bg-orange-300"
-              onClick={logout}
-            >
-              Cerrar Sesión
-            </button>
-          ) : (
-            <>
-              <button
-                className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover-bg-orange-300"
-                onClick={router}
-              >
-                Iniciar Sesión
-              </button>
-              <button
-                className="bg-orange-200 w-auto m-2 font-inter rounded-lg p-2 hover-bg-orange-300"
-                onClick={router}
-              >
-                Únete Ahora
-              </button>
-            </>
-          )}
+          {access ? <CustomMenu /> : <UserNoRegisted />}
         </div>
       </div>
       <div className="flex w-full min-h-[90vh] h-full">

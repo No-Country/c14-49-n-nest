@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavBar from "../Navbar/Navbar";
 import SearchBar from "../SearchBar/SearchBar";
@@ -8,28 +7,18 @@ import Cultura from "../HomeOptions/Cultura";
 import Merch from "../HomeOptions/Merch";
 import { setAllProducts } from "../Redux/sliceCart";
 import { useDispatch, useSelector } from "react-redux";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import SearchProducts from "../SearchProducts/SearchProducts";
-import { logout, isLogged, setAuthToken } from "../Redux/sliceUser";
+import { isLogged, setAuthToken } from "../Redux/sliceUser";
+import CustomMenu from "../User/Menu";
+import UserNoRegisted from "../User/UserNoRegisted";
 import ProductsByCat from "../ProdByCat/ProductsByCat";
 
 const Home = () => {
   const [imagenSeleccionada, setImagenSeleccionada] = useState("imgCarta");
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const access = useSelector(isLogged);
   console.log(access);
-  const toRegister = () => {
-    navigate("/register");
-  };
-  const goToLogin = () => {
-    navigate("/login");
-  };
-  const handleLogout = () => {
-    dispatch(logout());
-    localStorage.removeItem("authToken");
-    toast.success("Deslogeo correcto");
-  };
 
   useEffect(() => {
     axios
@@ -72,29 +61,7 @@ const Home = () => {
           Sabores y cafe
         </p>
         <div className="w-auto flex flex-row self-center mr-5 items-center justify-center">
-          {access ? (
-            <button
-              className="self-center bg-primary-100 text-white p-2 rounded-lg  mb-3 mt-2 ml-5 text-xl hover:bg-primary-200 "
-              onClick={handleLogout}
-            >
-              Cerrar Sesión
-            </button>
-          ) : (
-            <>
-              <button
-                className="self-center bg-primary-100 text-white p-2 rounded-lg  mb-3 mt-2 ml-5 text-xl hover:bg-primary-200 "
-                onClick={goToLogin}
-              >
-                Iniciar Sesión
-              </button>
-              <button
-                className="self-center bg-primary-100 text-white p-2 rounded-lg  mb-3 mt-2 ml-5 text-xl hover:bg-primary-200 "
-                onClick={toRegister}
-              >
-                Únete Ahora
-              </button>
-            </>
-          )}
+          {access ? <CustomMenu /> : <UserNoRegisted />}
         </div>
       </div>
       <NavBar setImagenSeleccionada={setImagenSeleccionada} />
@@ -134,7 +101,9 @@ const Home = () => {
           )}
           {imagenSeleccionada === "imgCultura" && <Cultura />}
           {imagenSeleccionada === "imgMerch" && <Merch />}
-          {imagenSeleccionada === "search" && <SearchProducts />}
+          {imagenSeleccionada === "search" && (
+            <SearchProducts setImagenSeleccionada={setImagenSeleccionada} />
+          )}
           {imagenSeleccionada === "prodByCat" && <ProductsByCat />}
         </div>
       </div>

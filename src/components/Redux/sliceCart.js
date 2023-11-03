@@ -62,7 +62,7 @@ export const sliceCart = createSlice({
           (a, b) => b.price - a.price
         );
         state.productsByCategory = [...state.productsByCategory].sort(
-          (a, b) => a.price - b.price
+          (a, b) => b.price - a.price
         );
       }
     },

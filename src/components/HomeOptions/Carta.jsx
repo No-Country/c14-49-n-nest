@@ -1,29 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllProducts,
-  setOrderByPrice,
-  setProductsByCategory,
-} from "../Redux/sliceCart";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import { useSelector } from "react-redux";
+import { getAllProducts } from "../Redux/sliceCart";
 import Pagination from "../Pagination/Pagination";
 import ProductCard from "../Cards/Card";
+import Filters from "../renderFilters/Filters";
 
 const Carta = ({ setImagenSeleccionada }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const dispatch = useDispatch();
-  const filterByPrice = (event) => {
-    const selectedOrder = event.target.value;
-    dispatch(setOrderByPrice(selectedOrder));
-  };
-  const filterByCategory = (event) => {
-    const selectedOrder = event.target.value;
-    dispatch(setProductsByCategory(selectedOrder));
-    setImagenSeleccionada("prodByCat");
-  };
 
   const products = useSelector(getAllProducts);
   const totalProducts = products.length;
@@ -40,33 +23,7 @@ const Carta = ({ setImagenSeleccionada }) => {
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
             Carta
           </h2>
-          <div>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-label">Precio</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="Precio"
-                onChange={filterByPrice}
-              >
-                <MenuItem value={"Asc"}>Menor a Mayor</MenuItem>
-                <MenuItem value={"Des"}>Mayor a Menor</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="demo-simple-select-label">Productos</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="Productos"
-                onChange={filterByCategory}
-              >
-                <MenuItem value={"todos"}>Todos</MenuItem>
-                <MenuItem value={"Cafe"}>Cafe</MenuItem>
-                <MenuItem value={"Medialuna"}>Panaderia</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
+          <Filters setImagenSeleccionada={setImagenSeleccionada} />
         </div>
         <div className="flex flex-wrap  justify-around items-center">
           {products.slice(startIndex, endIndex).map((product) => (
