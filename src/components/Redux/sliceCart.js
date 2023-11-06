@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   allProducts: [],
   cart: [],
-  searchProducts: [],
-  productsByCategory: [],
+  renderProducts: [],
+  filteredServices: [],
 };
 
 export const sliceCart = createSlice({
@@ -13,6 +13,12 @@ export const sliceCart = createSlice({
   reducers: {
     setAllProducts: (state, action) => {
       state.allProducts = action.payload;
+    },
+    setFilteredServices: (state, action) => {
+      state.filteredServices = action.payload;
+    },
+    setRenderProducts: (state, action) => {
+      state.renderProducts = action.payload;
     },
     setCart: (state, action) => {
       const prod = state.allProducts.find(
@@ -42,60 +48,21 @@ export const sliceCart = createSlice({
         }
       }
     },
-    setOrderByPrice: (state, action) => {
-      const order = action.payload;
-      if (order === "Asc") {
-        state.allProducts = [...state.allProducts].sort(
-          (a, b) => a.price - b.price
-        );
-        state.searchProducts = [...state.searchProducts].sort(
-          (a, b) => a.price - b.price
-        );
-        state.productsByCategory = [...state.productsByCategory].sort(
-          (a, b) => a.price - b.price
-        );
-      } else if (order === "Des") {
-        state.allProducts = [...state.allProducts].sort(
-          (a, b) => b.price - a.price
-        );
-        state.searchProducts = [...state.searchProducts].sort(
-          (a, b) => b.price - a.price
-        );
-        state.productsByCategory = [...state.productsByCategory].sort(
-          (a, b) => b.price - a.price
-        );
-      }
-    },
-    setSearchProducts: (state, action) => {
-      const order = action.payload;
-      state.searchProducts = order;
-    },
-    setProductsByCategory: (state, action) => {
-      const order = action.payload;
-      const filteredProducts = state.allProducts.filter(
-        (product) => product.category === order
-      );
-      state.productsByCategory = filteredProducts;
-      if (order == "todos") {
-        state.productsByCategory = state.allProducts;
-      }
-    },
   },
 });
 
 export const getAllProducts = (state) => state.sliceProducts.allProducts;
+export const getRenderProducts = (state) => state.sliceProducts.renderProducts;
 export const getCart = (state) => state.sliceProducts.cart;
-export const getSearchProducts = (state) => state.sliceProducts.searchProducts;
-export const getProductsByCategory = (state) =>
-  state.sliceProducts.productsByCategory;
+export const getFilteredServices = (state) =>
+  state.sliceProducts.filteredServices;
 
 export const {
   setAllProducts,
   setCart,
   setRemoveCart,
-  setOrderByPrice,
-  setSearchProducts,
-  setProductsByCategory,
+  setRenderProducts,
+  setFilteredServices,
 } = sliceCart.actions;
 
 export default sliceCart.reducer;

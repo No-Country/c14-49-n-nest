@@ -1,10 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
-import { getCart, setCart, setRemoveCart } from "../Redux/sliceCart";
+import {
+  getCart,
+  setCart,
+  setRemoveCart,
+} from "../../components/Redux/sliceCart";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { isLogged } from "../Redux/sliceUser";
-import CustomMenu from "../User/Menu";
-import UserNoRegisted from "../User/UserNoRegisted";
+import { isLogged } from "../../components/Redux/sliceUser";
+import CustomMenu from "../../components/User/Menu";
+import UserNoRegisted from "../../components/User/UserNoRegisted";
 
 const Carrito = () => {
   const cart = useSelector(getCart);

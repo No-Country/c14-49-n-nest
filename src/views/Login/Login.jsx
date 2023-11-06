@@ -9,7 +9,7 @@ import {
   setLastName,
   setMail,
   setName,
-} from "../Redux/sliceUser";
+} from "../../components/Redux/sliceUser";
 
 const Login = () => {
   const dispatch = useDispatch();

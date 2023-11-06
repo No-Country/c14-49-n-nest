@@ -1,37 +1,22 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import NavBar from "../Navbar/Navbar";
-import SearchBar from "../SearchBar/SearchBar";
-import Carta from "../HomeOptions/Carta";
-import Cultura from "../HomeOptions/Cultura";
-import Merch from "../HomeOptions/Merch";
-import { setAllProducts } from "../Redux/sliceCart";
+import { useState } from "react";
+import NavBar from "../../components/Navbar/Navbar";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import Carta from "../../components/HomeOptions/Carta";
+import Cultura from "../../components/HomeOptions/Cultura";
+import Merch from "../../components/HomeOptions/Merch";
 import { useDispatch, useSelector } from "react-redux";
 import { Toaster } from "react-hot-toast";
-import SearchProducts from "../SearchProducts/SearchProducts";
-import { isLogged, setAuthToken } from "../Redux/sliceUser";
-import CustomMenu from "../User/Menu";
-import UserNoRegisted from "../User/UserNoRegisted";
-import ProductsByCat from "../ProdByCat/ProductsByCat";
-
+import { isLogged, setAuthToken } from "../../components/Redux/sliceUser";
+import CustomMenu from "../../components/User/Menu";
+import UserNoRegisted from "../../components/User/UserNoRegisted";
+import useFilters from "../../hooks/useFilter";
+import SearchedProducts from "../SearchedProducts/SearchedProducts";
 const Home = () => {
   const [imagenSeleccionada, setImagenSeleccionada] = useState("imgCarta");
   const dispatch = useDispatch();
+  const { allProducts } = useFilters();
   const access = useSelector(isLogged);
-  console.log(access);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/products`)
-      .then((response) => {
-        const products = response.data;
-        setAllProducts(products);
-        dispatch(setAllProducts(products));
-      })
-      .catch((error) => {
-        console.error("Error al obtener los Productos", error);
-      });
-  }, []);
+  allProducts();
   const imagenes = [
     {
       id: "imgCarta",
@@ -72,7 +57,7 @@ const Home = () => {
           alt=""
         />
         <div className="absolute bottom-0 left-0 w-full">
-          <SearchBar setImagenSeleccionada={setImagenSeleccionada} />
+          <SearchBar />
         </div>
       </div>
       <div className="flex flex-row">
@@ -96,15 +81,9 @@ const Home = () => {
           ))}
         </div>
         <div className="flex w-3/4 justify-center items-center bg-primary-100">
-          {imagenSeleccionada === "imgCarta" && (
-            <Carta setImagenSeleccionada={setImagenSeleccionada} />
-          )}
+          {imagenSeleccionada === "imgCarta" && <Carta />}
           {imagenSeleccionada === "imgCultura" && <Cultura />}
           {imagenSeleccionada === "imgMerch" && <Merch />}
-          {imagenSeleccionada === "search" && (
-            <SearchProducts setImagenSeleccionada={setImagenSeleccionada} />
-          )}
-          {imagenSeleccionada === "prodByCat" && <ProductsByCat />}
         </div>
       </div>
     </div>

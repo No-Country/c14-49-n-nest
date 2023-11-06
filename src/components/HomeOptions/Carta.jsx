@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { getAllProducts } from "../Redux/sliceCart";
+import { getAllProducts, getRenderProducts } from "../Redux/sliceCart";
 import Pagination from "../Pagination/Pagination";
 import ProductCard from "../Cards/Card";
 import Filters from "../renderFilters/Filters";
 
-const Carta = ({ setImagenSeleccionada }) => {
+const Carta = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const products = useSelector(getAllProducts);
+  const products = useSelector(getRenderProducts);
   const totalProducts = products.length;
   const productsPerPage = 6;
   const totalPages = Math.ceil(totalProducts / productsPerPage);
@@ -23,7 +23,7 @@ const Carta = ({ setImagenSeleccionada }) => {
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
             Carta
           </h2>
-          <Filters setImagenSeleccionada={setImagenSeleccionada} />
+          <Filters />
         </div>
         <div className="flex flex-wrap  justify-around items-center">
           {products.slice(startIndex, endIndex).map((product) => (

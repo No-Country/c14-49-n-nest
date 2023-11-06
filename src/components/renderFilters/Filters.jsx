@@ -3,18 +3,18 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useDispatch } from "react-redux";
-import { setOrderByPrice, setProductsByCategory } from "../Redux/sliceCart";
+import useFilters from "../../hooks/useFilter";
 
-export default function Filters({ setImagenSeleccionada }) {
-  const dispatch = useDispatch();
-  const filterByPrice = (event) => {
+export default function Filters() {
+  const { filterByPrice, filterByCategory } = useFilters();
+  const productsByPrice = (event) => {
     const selectedOrder = event.target.value;
-    dispatch(setOrderByPrice(selectedOrder));
+    filterByPrice(selectedOrder);
   };
-  const filterByCategory = (event) => {
+
+  const productsByCategory = (event) => {
     const selectedOrder = event.target.value;
-    dispatch(setProductsByCategory(selectedOrder));
-    setImagenSeleccionada("prodByCat");
+    filterByCategory(selectedOrder);
   };
   return (
     <div>
@@ -24,10 +24,11 @@ export default function Filters({ setImagenSeleccionada }) {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="Precio"
-          onChange={filterByPrice}
+          onChange={productsByPrice}
         >
-          <MenuItem value={"Asc"}>Menor a Mayor</MenuItem>
-          <MenuItem value={"Des"}>Mayor a Menor</MenuItem>
+          <MenuItem value={"price"}>-</MenuItem>
+          <MenuItem value={"Mayor"}>Menor a Mayor</MenuItem>
+          <MenuItem value={"Menor"}>Mayor a Menor</MenuItem>
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
@@ -36,7 +37,7 @@ export default function Filters({ setImagenSeleccionada }) {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="Productos"
-          onChange={filterByCategory}
+          onChange={productsByCategory}
         >
           <MenuItem value={"todos"}>Todos</MenuItem>
           <MenuItem value={"Cafe"}>Cafe</MenuItem>

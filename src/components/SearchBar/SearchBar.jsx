@@ -1,26 +1,14 @@
-import axios from "axios";
 import { useState } from "react";
-import { setSearchProducts } from "../Redux/sliceCart";
-import { useDispatch } from "react-redux";
+import useFilters from "../../hooks/useFilter";
+import { useNavigate } from "react-router-dom";
 
-const SearchBar = ({ setImagenSeleccionada }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const dispatch = useDispatch();
-
-  const handleSearch = () => {
-    setImagenSeleccionada("search");
-    axios
-      .get(`http://localhost:3001/products/name?name=${searchTerm}`)
-      .then((response) => {
-        const foundProducts = response.data;
-        dispatch(setSearchProducts(foundProducts));
-      })
-      .catch((error) => {
-        console.error("Error al obtener los productos", error);
-      });
-  };
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+const SearchBar = () => {
+  const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
+  const { filterByName } = useFilters();
+  const handleClick = async () => {
+    await filterByName(inputValue);
+    // navigate("/searched-products");
   };
   return (
     <div className="flex items-center justify-center p-5">
@@ -36,16 +24,17 @@ const SearchBar = ({ setImagenSeleccionada }) => {
             </svg>
           </div>
           <input
-            onChange={handleChange}
+            onChange={(e) => setInputValue(e.target.value)}
             type="search"
             className="w-full max-w-[160px] bg-white pl-2 text-base font-semibold outline-0 focus:outline-none"
             placeholder=""
             id=""
+            value={inputValue}
           />
           <input
             type="button"
             value="Search"
-            onClick={handleSearch}
+            onClick={handleClick}
             className="bg-primary-400 p-2 rounded-tr-lg rounded-br-lg text-black font-semibold hover:bg-primary-500 hover:text-white transition-colors"
           />
         </div>
